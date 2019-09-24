@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <KeysMap>
+		  <Key name="C" action="payment"/>
+		  <Key name="M" action="page-forward"/>
+		  <Key name="B" action="page-back"/>
+		  <Key name="UP" action="row-up"/>
+		  <Key name="Space" action="row-down"/>
+		  <Key name="D1" action="game-1"/>
+		  <Key name="D2" action="game-2"/>
+		  <Key name="D3" action="game-3"/>
+		  <Key name="D4" action="game-4"/>
+		  <Key name="Escape" action="exit"/>	
+  </KeysMap>
+</Configuration>

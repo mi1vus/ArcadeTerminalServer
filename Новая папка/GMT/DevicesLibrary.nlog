@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<nlog autoReload="true" xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <targets>
+    <target xsi:type="File" name="f" 
+	fileName="${basedir}/Logs/Dev.${shortdate}.log"
+    layout="${longdate} ${uppercase:${level}} ${message} ${exception}"
+	archiveEvery="Day"
+	maxArchiveFiles="7"
+	archiveFileName="${basedir}/Logs/ADev.${shortdate}.txt"	/>
+  </targets>
+
+  <rules>
+    <logger name="*" minlevel="Trace" writeTo="f" />
+  </rules>
+</nlog>

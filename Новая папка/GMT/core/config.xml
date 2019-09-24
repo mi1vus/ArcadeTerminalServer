@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<options>
+	<screen width="1280" height="1024" noframe="1" xPos="0" yPos="0" view_width = "800" view_height = "600"/>
+	<button_mode draw="1" />
+	<screen_mode windowed="1" />
+	<touch_screen use="0" />
+	<exit_timeout value="0"/>
+	<exit_timeout_zero value="0"/>
+	<cursor_mode show = "0"/>
+</options>
+<system>
+	<!-- Only zero ( 0 )!!!!!!!! -->
+	<system_md5_version value = "1"/>
+	<system_crc_version value = "1"/>
+</system>
+<keymap>
+	<line1 key_char="1" />
+	<line2 key_char="2" />
+	<line3 key_char="3" />
+	<line4 key_char="4" />
+	<line5 key_char="5" />
+	<start key_code="32" />
+	<bet key_char="B" />
+	<collect key_char="C" />
+	<info key_char="I" />
+	<info1 key_code="282" />
+	<maxbet key_char="M" />
+	<autostart key_char="Z" />
+	<selectgame key_code="27" />
+	<exit key_code="291" />
+	<bet1 key_code="306" />
+	<maxbet1 key_code="308" />
+	
+	<mixdown key_code="276" />
+	<mixup key_code="275" />
+
+	<bet_dec key_code="274"/>
+	<bet_inc key_code="273"/>
+</keymap>
+<network>
+	<server_ip value="127.0.0.1" />
+	<server_port value="5000"/>
+	<ping_interval value="1000" />
+	<hall_prefix value ="0001"/>
+</network>
+<devices>
+	<cardreader use="1" nix_port="/dev/ttyUSB0" win_port="8" />
+</devices>
+<denomination>
+	<!--При использовании, задается в копейках-->
+	<denom menu="0" currency="57" value="100" />
+	<d10  value="1" />
+	<d20  value="1" />
+	<d50  value="1" />
+	<d100 value="1" />
+	<d200 value="1" />
+	<d500 value="1" />
+	<d1000 value="1" />
+	<d2000 value="1" />
+	<d1  value="0" />
+	<d2  value="0" />
+	<d3  value="0" />
+	<d5 value="0" />
+	<d25 value="0" />
+</denomination>
+<logs>
+	<save_logs value="1" />
+	<system use = "1"/>
+</logs>
+<auth>
+	<menu scratch="0" offer="0" usual="1"/>
+	<auto_log_in value = "0" />
+	<auto_login value = "1" />
+	<wait_attendant screen = "0" />
+	<login value = "0000" />
+	<password value = "00000000" />
+	<game num="50"/>
+</auth>
+<scratch>
+	<use_scratch value = "1"/>
+	<scratch_button key_char= "S"/>
+</scratch>
+<game>
+	<sound no = "0"/>
+	<rules path = "rules.txt">
+</game>
+
