@@ -15,7 +15,7 @@ namespace TradeServer
 
     public partial class Form1 : Form
     {
-        public Server Server = null;
+        public static Server ServerS = null;
 
         public Form1()
         {
@@ -24,27 +24,32 @@ namespace TradeServer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Server = new Server(int.Parse(textBox1.Text));
+            //Server = new Server(int.Parse(textBox1.Text));
 
-            //// Создаем поток
-            //Thread Thread = new Thread(new ParameterizedThreadStart(ServerThread));
-            //    //() => 
-            //    //{
-            //    //    Server = new Server(int.Parse(textBox1.Text));
-            //    //}
-            //    //));
-            //// И запускаем этот поток, передавая ему принятого клиента
-            //Thread.Start(null);
+            // Создаем поток
+            Thread Thread = new Thread(new ParameterizedThreadStart(ServerThread));
+                //() => 
+                //{
+                //    Server = new Server(int.Parse(textBox1.Text));
+                //}
+                //));
+            // И запускаем этот поток, передавая ему принятого клиента
+            Thread.Start(null);
         }
 
         public void ServerThread(Object StateInfo)
         {
-            Server = new Server(int.Parse(textBox1.Text));
+            ServerS = new Server(int.Parse(textBox1.Text));
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Server?.Stop();
+            Server.Listener?.Stop();
+            //Listener.EndAcceptSocket();
+            //Listener.EndAcceptTcpClient();
+            Server.Listener = null;
+            ServerS?.Stop();
+            ServerS = null;
         }
     }
 }

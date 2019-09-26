@@ -18,6 +18,7 @@ namespace TradeServer
     public class Client
     {
         public static string LogFile = "Loggin.txt";
+        object fileLock = new object();
         // Конструктор класса. Ему нужно передавать принятого клиента от TcpListener
         public Client(TcpClient Client)
         {
@@ -42,7 +43,8 @@ namespace TradeServer
                 }
             }
 
-            File.AppendAllText(LogFile, Request);
+            lock(fileLock)
+                File.AppendAllText(LogFile, Request);
 
 
 
@@ -62,7 +64,7 @@ namespace TradeServer
 
     public class Server
     {
-        TcpListener Listener; // Объект, принимающий TCP-клиентов
+        public static TcpListener Listener; // Объект, принимающий TCP-клиентов
                
         // Запуск сервера
         public Server(int Port)
@@ -73,14 +75,20 @@ namespace TradeServer
             Listener.Start(); // Запускаем его
 
             // В бесконечном цикле
-            while (true)
+            while (Listener != null)
             {
-                // Принимаем новых клиентов. После того, как клиент был принят, он передается в новый поток (ClientThread)
-                // с использованием пула потоков.
-                ThreadPool.QueueUserWorkItem(new WaitCallback(ClientThread), Listener.AcceptTcpClient());
+                try
+                {
+                    // Принимаем новых клиентов. После того, как клиент был принят, он передается в новый поток (ClientThread)
+                    // с использованием пула потоков.
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(ClientThread), Listener.AcceptTcpClient());
+                    // Принимаем новых клиентов и передаем их на обработку новому экземпляру класса Client
+                    //new Client(Listener.AcceptTcpClient());
+                } catch (Exception ex)
+                {
 
-                // Принимаем новых клиентов и передаем их на обработку новому экземпляру класса Client
-                //new Client(Listener.AcceptTcpClient());
+                }
+
             }
         }
 
@@ -97,6 +105,9 @@ namespace TradeServer
             {
                 // Остановим его
                 Listener.Stop();
+                //Listener.EndAcceptSocket();
+                //Listener.EndAcceptTcpClient();
+                Listener = null;
             }
         }
 
